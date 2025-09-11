@@ -266,6 +266,72 @@ def run_app():
       btn = tk.Button(mainwindow, text="Submit", font=("Ariel", 18), command=lambda:Balance_btn(Acc_entry,pass_entry))
       btn.grid(row=4, column=0, sticky="w", padx=50)
       mainwindow.mainloop()
+     def register():
+        mainwindow = tk.Toplevel()
+        mainwindow.title("DockNow")
+        mainwindow.geometry("800x700")
+        mainwindow.config(bg="white")
+        canva = tk.Canvas(mainwindow, height=200, width=900, bg="white", highlightthickness=0)
+        img = PhotoImage(file="fin_logo-2.png")
+        canva.create_image(400, 100, image=img)
+        canva.grid(row=0, column=0)
+
+        label1 = tk.Label(mainwindow, text=" Enter Account Number :", bg="green", fg="white", font=("Ariel", 18))
+        label1.grid(row=2, column=0, sticky="w", padx=20)
+        Acc_entry = tk.Entry(mainwindow, bg="lightgray", fg="darkblue", relief="sunken", font=("Ariel", 15))
+        Acc_entry.grid(row=2, column=0, sticky="w", padx=230)
+
+        label2 = tk.Label(mainwindow, text=" Enter Your Password    :", bg="green", fg="white", font=("Ariel", 18))
+        label2.grid(row=3, column=0, sticky="w", padx=20, pady=50)
+        pass_entry = tk.Entry(mainwindow, bg="lightgray", fg="darkblue", relief="sunken", font=("Ariel", 15))
+        pass_entry.grid(row=3, column=0, sticky="w", padx=230)
+        label3 = tk.Label(mainwindow, text=" Enter Your Account Status(type Valid) :", bg="green", fg="white", font=("Ariel", 18))
+        label3.grid(row=4, column=0, sticky="w", padx=20)
+        Acc_status = tk.Entry(mainwindow, bg="lightgray", fg="darkblue", relief="sunken", font=("Ariel", 15))
+        Acc_status.grid(row=4, column=0, sticky="w", padx=350)
+
+        deposit = tk.Label(mainwindow, text=" Enter Initial Amount :", bg="green", fg="white", font=("Ariel", 18))
+        deposit.grid(row=5, column=0, sticky="w", padx=20, pady=50)
+        deposit_entry = tk.Entry(mainwindow, bg="lightgray", fg="darkblue", relief="sunken", font=("Ariel", 15))
+        deposit_entry.grid(row=5, column=0, sticky="w", padx=210)
+
+        def submit():
+            account_info=Acc_entry.get()
+            pass_info=pass_entry.get()
+            acc_stat=Acc_status.get()
+            deposit_info=deposit_entry.get()
+
+
+            if(len(account_info)==0 or len(pass_info)==0 or len(acc_stat)==0 or len(deposit_info)==0):
+                    messagebox.showerror(title="Error", message="Please Enter the Value Correctly in the Fields")
+            else:
+
+                    data_2_add={
+                            "password":pass_info,
+                            "balance":deposit_info,
+                            "status":acc_stat
+                    }
+
+                    with open("Customer_data.json","r") as data_file:
+                        data_2=json.load(data_file)
+                        data_2[account_info]=data_2_add
+                    with open("Customer_data.json","w") as data_file:
+                        json.dump(data_2,data_file,indent=4)
+                    messagebox.showinfo(title="Congratulations",message="Account is successfully created ")
+                    Acc_entry.delete(0,len(account_info))
+                    pass_entry.delete(0,len(pass_info))
+                    Acc_status.delete(0,len(acc_stat))
+                    deposit_entry.delete(0,len(deposit_info))
+
+
+
+
+        submit_reg=tk.Button(mainwindow,text="Submit",font=("Ariel", 20),command=submit)
+        submit_reg.grid(row=6,column=0,sticky="w",padx=50)
+
+        mainwindow.mainloop()
+
+
 
 
 
@@ -281,6 +347,9 @@ def run_app():
     btn3.grid(row=14, column=0, sticky="w", padx=150)
     btn4 = tk.Button(text="Account Balance", font=("Ariel", 20), command=acc_balance)
     btn4.grid(row=14, column=0, sticky="w", padx=350)
+    btn5=tk.Button(text="Register For New Account",bg="green",fg="black",font=("Ariel", 20),command=register)
+    btn5.grid(row=18,column=0,sticky="w",pady=50,padx="200")
+    window.mainloop()
     window.mainloop()
 
 if __name__ == "__main__":
