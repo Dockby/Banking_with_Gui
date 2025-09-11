@@ -88,7 +88,7 @@ def run_app():
                             Customer1 = Customer(account, passwordy)
                             if Customer1.Money_withdraw(Amount):
                                 messagebox.showinfo(title="Transaction Successful",message=f"Amount withdrawn ₹{Amount} Thank You")
-
+                                Amt_entry.delete(0,len(Amount))
 
 
                     btn_withdraw = tk.Button(mainwindow, text="Withdraw", font=("Ariel", 18), command=withdraw_success)
@@ -193,7 +193,8 @@ def run_app():
         if Customer1.Money_deposit(amt):
 
           messagebox.showinfo("Deposit Success",message=f"Amount Credited: ₹{amt}")
-
+          Acc_entry.delete(0,len(acc_no))
+          Amt_entry.delete(0,len(amt))
       btn_add = tk.Button(mainwindow, text="Submit", font=("Ariel", 18),command=submit_action)
       btn_add.grid(row=4, column=0, sticky="w", padx=50)
       mainwindow.mainloop()
