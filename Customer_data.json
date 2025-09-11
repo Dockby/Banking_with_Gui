@@ -1,0 +1,27 @@
+{
+    "4567": {
+        "password": 4567,
+        "balance": 18702,
+        "status": "Valid"
+    },
+    "1234": {
+        "password": 1234,
+        "balance": 1234,
+        "status": "InValid"
+    },
+    "2345": {
+        "password": 2345,
+        "balance": 2345,
+        "status": "Valid"
+    },
+    "3456": {
+        "password": 3456,
+        "balance": 3456,
+        "status": "Valid"
+    },
+    "5678": {
+        "password": 5678,
+        "balance": 5678,
+        "status": "InValid"
+    }
+}
