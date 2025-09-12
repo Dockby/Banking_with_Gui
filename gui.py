@@ -282,10 +282,10 @@ def run_app():
         Acc_entry = tk.Entry(mainwindow, bg="lightgray", fg="darkblue", relief="sunken", font=("Ariel", 15))
         Acc_entry.grid(row=2, column=0, sticky="w", padx=230)
 
-        label2 = tk.Label(mainwindow, text=" Enter Your Password    :", bg="green", fg="white", font=("Ariel", 18))
+        label2 = tk.Label(mainwindow, text=" Enter Your Password (In Digits)   :", bg="green", fg="white", font=("Ariel", 18))
         label2.grid(row=3, column=0, sticky="w", padx=20, pady=50)
         pass_entry = tk.Entry(mainwindow, bg="lightgray", fg="darkblue", relief="sunken", font=("Ariel", 15))
-        pass_entry.grid(row=3, column=0, sticky="w", padx=230)
+        pass_entry.grid(row=3, column=0, sticky="w", padx=300)
         label3 = tk.Label(mainwindow, text=" Enter Your Account Status(type Valid) :", bg="green", fg="white", font=("Ariel", 18))
         label3.grid(row=4, column=0, sticky="w", padx=20)
         Acc_status = tk.Entry(mainwindow, bg="lightgray", fg="darkblue", relief="sunken", font=("Ariel", 15))
@@ -305,11 +305,17 @@ def run_app():
 
             if(len(account_info)==0 or len(pass_info)==0 or len(acc_stat)==0 or len(deposit_info)==0):
                     messagebox.showerror(title="Error", message="Please Enter the Value Correctly in the Fields")
+            if not pass_info.isdigit():
+                    messagebox.showerror(title="Error", message="Password must be numeric only")
+                    return
+            if not deposit_info.isdigit():
+                    messagebox.showerror(title="Error", message="Amount must be numeric only")
+                    return
             else:
 
                     data_2_add={
-                            "password":pass_info,
-                            "balance":deposit_info,
+                            "password":int(pass_info),
+                            "balance":int(deposit_info),
                             "status":acc_stat
                     }
 
